@@ -49,7 +49,7 @@ function onSubmit(event) {
                 
             } 
             if (res.hits.length === 0) {
-                return showMessage(errorIcon, 'Sorry, there are no images matching your search query. Please try again!', '#ef4040');
+                return showMessage(errorIcon, 'Sorry,   there are no images matching your search query. Please try again!', '#ef4040');
             }
                 const galleryMarkup = createGalleryMarkup(res.hits);
             gallery.innerHTML = galleryMarkup;
