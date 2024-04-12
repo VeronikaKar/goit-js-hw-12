@@ -94,3 +94,16 @@ p {
   clip-path: inset(100%);
   overflow: hidden;
 }
+.btn-load-more {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  color: #fff;
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 62px;
+  height: 40px;
+  background: #4e75ff;
+}

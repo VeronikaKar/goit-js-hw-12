@@ -15,8 +15,9 @@ import { clearGallery } from './js/render-functions.js';
 import errorIcon from './img/bi_x-octagon.svg'
 
 const form = document.querySelector('.form');
-const input = document.querySelector('.text-input');
+
 const gallery = document.querySelector('.gallery');
+const loadMoreBtn = document.querySelector(".btn-load-more");
     const lightbox = new SimpleLightbox('.gallery a', 
 { 
     captions: true,
@@ -26,15 +27,27 @@ const gallery = document.querySelector('.gallery');
    
 }); 
 
+
 form.addEventListener("submit", onSubmit);
+loadMoreBtn.addEventListener("click", onClick);
+
+let page = 1;
+let searchQuery = null;
 
 function onSubmit(event) {
     event.preventDefault();
     const searchQuery = event.currentTarget.search.value.trim();
     showLoader();
+    loadMoreBtn.classList.add("visually-hidden");
     clearGallery(gallery);
-    searchForm(searchQuery)
-        .then(res => {console.log(res);
+    page = 1;
+    searchForm(searchQuery, page)
+        .then(res =>  {
+            if (res.hits.total > 0) {
+                showMessage
+                   (errorIcon, 'Sorry, there are no images matching your search query. Please try again!', '#ef4040');
+                
+            } 
             if (res.hits.length === 0) {
                 return showMessage(errorIcon, 'Sorry, there are no images matching your search query. Please try again!', '#ef4040');
             }
@@ -49,4 +62,25 @@ function onSubmit(event) {
         .finally(() => {
             hiddenLoader();
         });
+}
+function onClick() {
+    page += 1;
+    searchForm(searchQuery, page).then((res) => {
+        list.insertAdjacentHTML("beforeend", createGalleryMarkup(res.hits))
+    const { height: cardHeight } = document
+      .querySelector('.gallery')
+      .firstElementChild.getBoundingClientRect();
+
+    window.scrollBy({
+      top: cardHeight * 2,
+      behavior: 'smooth',
+    });
+        const lastPage=Math.ceil(res.hits.total / 15)
+        if (lastPage === page) {
+            loadMoreBtn.classList.add("visually-hidden")
+            showMessage(errorIcon, 'Sorry, there are no images matching your search query. Please try again!', '#ef4040');
+        }
+        
+    })
+  
 }
