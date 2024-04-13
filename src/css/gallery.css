@@ -94,6 +94,12 @@ p {
   clip-path: inset(100%);
   overflow: hidden;
 }
+.btn-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 .btn-load-more {
   font-family: var(--font-family);
   font-weight: 500;
@@ -103,7 +109,11 @@ p {
   color: #fff;
   border-radius: 8px;
   padding: 8px 16px;
-  width: 62px;
+  width: 130px;
   height: 40px;
   background: #4e75ff;
+  border-color: #4e75ff;
+}
+.btn-load-more:hover {
+  background-color: #6c8cff;
 }
