@@ -94,13 +94,14 @@ p {
   clip-path: inset(100%);
   overflow: hidden;
 }
-.btn-container {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-}
+
 .btn-load-more {
+  display: block;
+  width: 125px;
+  height: 40px;
+  margin: 0 auto;
+  margin-top: 32px;
+  margin-bottom: 20px;
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 16px;
